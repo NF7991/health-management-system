@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tftte.dao.CheckGroupDao">
+    <insert id="add" parameterType="com.tftte.pojo.CheckGroup">
+        <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_checkgroup(code,name,sex,helpCode,remark,attention)
+                      values
+        (#{code},#{name},#{sex},#{helpCode},#{remark},#{attention})
+    </insert>
+
+    <insert id="setCheckGroupAndCheckItem" parameterType="map">
+    insert into t_checkgroup_checkitem(checkgroup_id, checkitem_id)
+    values
+    (#{checkGroupId},#{checkItemId})
+</insert>
+
+</mapper>

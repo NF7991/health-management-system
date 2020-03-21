@@ -1,6 +1,10 @@
 package com.tftte.service;
 
+import com.tftte.entity.PageResult;
+import com.tftte.entity.QueryPageBean;
 import com.tftte.pojo.CheckItem;
+
+import java.util.List;
 
 /**
  * @Author: tftte
@@ -9,5 +13,15 @@ import com.tftte.pojo.CheckItem;
  */
 public interface CheckItemService {
 
-    public void add(CheckItem checkItem);
+    void add(CheckItem checkItem);
+
+    PageResult pageQuery(QueryPageBean queryPageBean);
+
+    void deleteById(Integer id);
+
+    void edit(CheckItem checkItem);
+
+    CheckItem findById(Integer id);
+
+    List<CheckItem> findAll();
 }

@@ -1,6 +1,9 @@
 package com.tftte.dao;
 
+import com.github.pagehelper.Page;
 import com.tftte.pojo.CheckItem;
+
+import java.util.List;
 
 /**
  * @Author: tftte
@@ -9,6 +12,17 @@ import com.tftte.pojo.CheckItem;
  */
 public interface CheckItemDao {
 
-    public void add(CheckItem checkItem);
+    void add(CheckItem checkItem);
 
+    Page<CheckItem> selectByCondition(String queryString);
+
+    Long findCountByCheckItemId(Integer id);
+
+    void deleteById(Integer id);
+
+    void edit(CheckItem checkItem);
+
+    CheckItem findById(Integer id);
+
+    List<CheckItem> findAll();
 }
