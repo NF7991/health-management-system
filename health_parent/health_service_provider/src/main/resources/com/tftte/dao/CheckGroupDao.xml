@@ -7,7 +7,7 @@
             select LAST_INSERT_ID()
         </selectKey>
         insert into t_checkgroup(code,name,sex,helpCode,remark,attention)
-                      values
+        values
         (#{code},#{name},#{sex},#{helpCode},#{remark},#{attention})
     </insert>
 
@@ -15,6 +15,50 @@
     insert into t_checkgroup_checkitem(checkgroup_id, checkitem_id)
     values
     (#{checkGroupId},#{checkItemId})
-</insert>
+    </insert>
+
+    <select id="findByCondition" parameterType="String" resultType="com.tftte.pojo.CheckGroup">
+        select * from t_checkgroup
+        <if test="value != null and value != '' and value.length > 0">
+            where code = #{value} or name = #{value} or helpCode = #{value}
+        </if>
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="com.tftte.pojo.CheckGroup">
+        select * from t_checkgroup where id = #{id}
+    </select>
+
+    <select id="findCheckItemIdsByCheckGroupId" parameterType="Integer" resultType="Integer">
+        select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </select>
+
+    <update id="edit" parameterType="com.tftte.pojo.CheckGroup">
+        update t_checkgroup
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="helpCode != null">
+                helpCode = #{helpCode},
+            </if>
+            <if test="attention != null">
+                attention = #{attention},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAssociation" parameterType="Integer">
+        delete from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </delete>
 
 </mapper>
