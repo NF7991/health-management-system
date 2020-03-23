@@ -22,6 +22,9 @@
         <fileset id="fileset3" name="Spring Service" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/spring-service.xml</file>
         </fileset>
+        <fileset id="fileset4" name="Spring Redis" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/spring-redis.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>

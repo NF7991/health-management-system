@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tftte.dao.SetmealDao">
+    <insert id="add" parameterType="com.tftte.pojo.Setmeal">
+        <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_setmeal(code,name,sex,helpCode,remark,attention,age,price,img)
+        values
+        (#{code},#{name},#{sex},#{helpCode},#{remark},#{attention},#{age},#{price},#{img})
+    </insert>
+
+    <insert id="setCheckGroupAndCheckItem" parameterType="map">
+    insert into t_setmeal_checkgroup(setmeal_id, checkgroup_id)
+    values
+    (#{setmealId},#{checkgroupId})
+    </insert>
+
+    <select id="findByCondition" parameterType="String" resultType="com.tftte.pojo.Setmeal">
+        select * from t_setmeal
+        <if test="value != null and value != '' and value.length > 0">
+            where code = #{value} or name = #{value} or helpCode = #{value}
+        </if>
+    </select>
+
+</mapper>

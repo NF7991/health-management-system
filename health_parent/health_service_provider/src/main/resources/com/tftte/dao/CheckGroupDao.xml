@@ -61,4 +61,7 @@
         delete from t_checkgroup_checkitem where checkgroup_id = #{id}
     </delete>
 
+    <select id="findAll" resultType="com.tftte.pojo.CheckGroup">
+        select * from t_checkgroup
+    </select>
 </mapper>
