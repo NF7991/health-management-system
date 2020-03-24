@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="health_interface" />
+        <module name="health_mobile" />
         <module name="health_service_provider" />
         <module name="health_jobs" />
-        <module name="health_common" />
+        <module name="health_interface" />
         <module name="health_backend" />
+        <module name="health_common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -18,6 +19,7 @@
       <module name="health_common" target="9" />
       <module name="health_interface" target="1.8" />
       <module name="health_jobs" target="1.8" />
+      <module name="health_mobile" target="1.8" />
       <module name="health_parent" target="1.8" />
       <module name="health_service_provider" target="1.8" />
     </bytecodeTargetLevel>

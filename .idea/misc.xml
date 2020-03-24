@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_backend" />
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_jobs" />
+    <file type="web" url="file://$PROJECT_DIR$/health_parent/health_mobile" />
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_service_provider" />
   </component>
   <component name="MavenProjectsManager">
