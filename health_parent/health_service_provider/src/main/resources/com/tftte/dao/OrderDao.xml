@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itheima.dao.OrderDao" >
-    <resultMap id="baseResultMap" type="com.itheima.pojo.Order">
+<mapper namespace="com.tftte.dao.OrderDao" >
+    <resultMap id="baseResultMap" type="com.tftte.pojo.Order">
         <id column="id" property="id"/>
         <result column="member_id" property="memberId"/>
         <result column="orderDate" property="orderDate"/>
@@ -11,7 +11,7 @@
         <result column="setmeal_id" property="setmealId"/>
     </resultMap>
     <!--新增-->
-    <insert id="add" parameterType="com.itheima.pojo.Order">
+    <insert id="add" parameterType="com.tftte.pojo.Order">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -20,7 +20,7 @@
     </insert>
 
     <!--动态条件查询-->
-    <select id="findByCondition" parameterType="com.itheima.pojo.Order" resultMap="baseResultMap">
+    <select id="findByCondition" parameterType="com.tftte.pojo.Order" resultMap="baseResultMap">
         select * from t_order
         <where>
             <if test="id != null">
