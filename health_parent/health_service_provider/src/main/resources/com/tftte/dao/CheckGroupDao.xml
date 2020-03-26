@@ -64,4 +64,27 @@
     <select id="findAll" resultType="com.tftte.pojo.CheckGroup">
         select * from t_checkgroup
     </select>
+
+    <resultMap id="baseResultMap" type="com.tftte.pojo.CheckGroup">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+    </resultMap>
+
+    <resultMap id="findByIdResultMap" type="com.tftte.pojo.CheckGroup" extends="baseResultMap">
+        <!--检查组和检查项多对多关联查询-->
+        <collection property="checkItems"
+                    ofType="com.tftte.pojo.CheckItem"
+                    column="id"
+                    select="com.tftte.dao.CheckItemDao.findCheckItemById"
+        ></collection>
+    </resultMap>
+    
+    <select id="findCheckGroupById" parameterType="Integer" resultMap="findByIdResultMap">
+        select * from t_checkgroup where id in (select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{id})
+    </select>
 </mapper>

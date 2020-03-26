@@ -3,6 +3,7 @@ package com.tftte.dao;
 import com.github.pagehelper.Page;
 import com.tftte.pojo.Setmeal;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +17,8 @@ public interface SetmealDao {
     void setSetmealAndCheckGroup(Map map);
 
     Page<Setmeal> findByCondition(String queryString);
+
+    List<Setmeal> findAll();
+
+    Setmeal findById(Integer id);
 }

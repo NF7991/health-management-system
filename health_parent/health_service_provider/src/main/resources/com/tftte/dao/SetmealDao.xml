@@ -24,4 +24,33 @@
         </if>
     </select>
 
+    <select id="findAll" resultType="com.tftte.pojo.Setmeal">
+        select * from t_setmeal
+    </select>
+
+    <resultMap id="baseResultMap" type="com.tftte.pojo.Setmeal">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+    </resultMap>
+    
+    <resultMap id="findByIdResultMap" type="com.tftte.pojo.Setmeal" extends="baseResultMap">
+        <collection property="checkGroups"
+                    ofType="com.tftte.pojo.CheckGroup"
+                    select="com.tftte.dao.CheckGroupDao.findCheckGroupById"
+                    column="id">
+        </collection>
+    </resultMap>
+
+    <select id="findById" parameterType="Integer" resultMap="findByIdResultMap">
+        select * from t_setmeal where id = #{id}
+    </select>
+
 </mapper>
