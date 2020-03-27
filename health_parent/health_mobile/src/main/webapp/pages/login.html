@@ -40,7 +40,7 @@
                     <div class="input-row">
                         <label>验证码</label>
                         <div class="loginInput">
-                            <input v-model="loginInfo.validateCode" style="width:80%" id='password' type="password" placeholder="请输入验证码">
+                            <input v-model="loginInfo.validateCode" style="width:80%" id='password' type="text" placeholder="请输入验证码">
                         </div>
                     </div>
                     <div class="input-row" style="font-size: 12px">
@@ -62,34 +62,42 @@
             methods:{
                 //发送验证码
                 sendValidateCode(){
+                    //获取用户输入的手机号
                     var telephone = this.loginInfo.telephone;
-                    if (!checkTelephone(telephone)) {
-                        this.$message.error('请输入正确的手机号');
+                    //调用js方法，校验输入的手机号是否合法
+                    if(!checkTelephone(telephone)){
+                        //校验不通过，提示错误信息
+                        this.$message.error("请输入正确的手机号");
                         return false;
                     }
-                    validateCodeButton = $("#validateCodeButton")[0];
-                    clock = window.setInterval(doLoop, 1000); //一秒执行一次
-                    axios.post("/validateCode/send4Login.do?telephone=" + telephone).then((response) => {
-                        if(!response.data.flag){
-                            //验证码发送失败
-                            this.$message.error('验证码发送失败，请检查手机号输入是否正确');
+                    //在按钮上显示30秒倒计时效果
+                    validateCodeButton = $("#validateCodeButton")[0];//锁定dom对象
+                    clock = window.setInterval(doLoop,1000);//定时器方法，可以实现每隔指定的时间调用指定的方法
+                    //发送ajax请求，为用户发送手机验证码
+                    axios.post("/validateCode/send4Login.do?telephone=" + telephone).then((res) => {
+                        if(!res.data.flag){
+                            //短信验证码发送失败
+                            this.$message.error(res.data.message);
                         }
                     });
                 },
                 //登录
                 login(){
+                    //获取用户输入的手机号
                     var telephone = this.loginInfo.telephone;
-                    if (!checkTelephone(telephone)) {
-                        this.$message.error('请输入正确的手机号');
+                    //调用js方法，校验输入的手机号是否合法
+                    if(!checkTelephone(telephone)){
+                        //校验不通过，提示错误信息
+                        this.$message.error("请输入正确的手机号");
                         return false;
                     }
-                    axios.post("/login/check.do",this.loginInfo).then((response) => {
-                        if(response.data.flag){
-                            //登录成功,跳转到index.html
-                            window.location.href="index.html";
+                    //发送ajax请求，将表单数据提交到Controller进行登录处理
+                    axios.post("/member/login.do",this.loginInfo).then((res) => {
+                        if(res.data.flag){
+                            //登录成功，跳转到会员首页
+                            window.location.href = "member.html";
                         }else{
-                            //失败，提示失败信息
-                            this.$message.error(response.data.message);
+                            this.$message.error(res.data.message);
                         }
                     });
                 }
