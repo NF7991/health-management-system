@@ -16,6 +16,9 @@
         <fileset id="fileset" name="Spring Redis" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/spring-redis.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Spring Security" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/spring-security.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
