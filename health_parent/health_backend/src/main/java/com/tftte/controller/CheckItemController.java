@@ -7,6 +7,7 @@ import com.tftte.entity.QueryPageBean;
 import com.tftte.entity.Result;
 import com.tftte.pojo.CheckItem;
 import com.tftte.service.CheckItemService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,7 @@ public class CheckItemController {
         return checkItemService.pageQuery(queryPageBean);
     }
 
+    @PreAuthorize("hasAnyAuthority('CHECKITEM_DELETE')")
     @RequestMapping("/delete")
     public Result delete(Integer id) {
         try {
