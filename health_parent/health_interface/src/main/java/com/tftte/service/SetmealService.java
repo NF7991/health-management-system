@@ -5,6 +5,7 @@ import com.tftte.entity.QueryPageBean;
 import com.tftte.pojo.Setmeal;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: tftte
@@ -19,4 +20,6 @@ public interface SetmealService {
     List<Setmeal> findAll();
 
     Setmeal findById(Integer id);
+
+    List<Map<String, Object>> findSetmealCount();
 }

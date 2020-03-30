@@ -13,68 +13,68 @@
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style type="text/css">
-    .el-main{
-        position: absolute;
-        top: 70px;
-        bottom: 0px;
-        left: 200px;
-        right: 10px;
-        padding: 0;
-    }
+        .el-main{
+            position: absolute;
+            top: 70px;
+            bottom: 0px;
+            left: 200px;
+            right: 10px;
+            padding: 0;
+        }
     </style>
 </head>
 <body class="hold-transition skin-purple sidebar-mini">
-    <div id="app">
-        <el-container>
-            <el-header  class="main-header" style="height:70px;">
-                <nav class="navbar navbar-static-top" :class=''>
-                    <!-- Logo -->
-                    <a href="#" class="logo" style="text-align:center">
-                        <span class="logo-lg"><img src="../img/logo.png"></span>
-                    </a>
-                    <div class="right-menu">
-                        <span class="help"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>帮助</span>
-                        <el-dropdown class="avatar-container right-menu-item" trigger="click">
-                            <div class="avatar-wrapper">
-                                <img src="../img/user2-160x160.jpg" class="user-avatar">
-                                {{username}}
-                            </div>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item divided>
-                                    <span style="display:block;">修改密码</span>
-                                </el-dropdown-item>
-                                <el-dropdown-item divided>
+<div id="app">
+    <el-container>
+        <el-header  class="main-header" style="height:70px;">
+            <nav class="navbar navbar-static-top" :class=''>
+                <!-- Logo -->
+                <a href="#" class="logo" style="text-align:center">
+                    <font size="6">--PT健康--</font>
+                </a>
+                <div class="right-menu">
+                    <span class="help"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>帮助</span>
+                    <el-dropdown class="avatar-container right-menu-item" trigger="click">
+                        <div class="avatar-wrapper">
+                            <img src="../img/user2-160x160.jpg" class="user-avatar">
+                            {{username}}
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item divided>
+                                <span style="display:block;">修改密码</span>
+                            </el-dropdown-item>
+                            <el-dropdown-item divided>
                                         <span style="display:block;">
                                             <a href="/logout.do">退出</a>
                                         </span>
-                                    </el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
-                    </div>
-                </nav>
-            </el-header>
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
+            </nav>
+        </el-header>
+        <el-container>
+            <el-aside width="200px">
+                <el-menu>
+                    <el-submenu v-for="menu in menuList" :index="menu.path">
+                        <template slot="title">
+                            <i class="fa" :class="menu.icon"></i>
+                            {{menu.title}}
+                        </template>
+                        <template v-for="child in menu.children">
+                            <el-menu-item :index="child.path">
+                                <a :href="child.linkUrl" target="right">{{child.title}}</a>
+                            </el-menu-item>
+                        </template>
+                    </el-submenu>
+                </el-menu>
+            </el-aside>
             <el-container>
-                <el-aside width="200px">
-                    <el-menu>
-                        <el-submenu v-for="menu in menuList" :index="menu.path">
-                            <template slot="title">
-                                <i class="fa" :class="menu.icon"></i>
-                                {{menu.title}}
-                            </template>
-                            <template v-for="child in menu.children">
-                                <el-menu-item :index="child.path">
-                                    <a :href="child.linkUrl" target="right">{{child.title}}</a>
-                                </el-menu-item>
-                            </template>
-                        </el-submenu>
-                    </el-menu>
-                </el-aside>
-                <el-container>
-                    <iframe name="right" class="el-main" src="checkitem.html" width="100%" height="580px" frameborder="0"></iframe>
-                </el-container>
+                <iframe name="right" class="el-main" src="checkitem.html" width="100%" height="580px" frameborder="0"></iframe>
             </el-container>
         </el-container>
-    </div>
+    </el-container>
+</div>
 </body>
 <!-- 引入组件库 -->
 <script src="../js/vue.js"></script>
@@ -177,6 +177,18 @@
                             "title": "会员数量统计",
                             "linkUrl":"report_member.html",
                             "children":[]
+                        },
+                        {
+                            "path": "/5-2",
+                            "title": "套餐预约占比统计",
+                            "linkUrl":"report_setmeal.html",
+                            "children":[]
+                        },
+                        {
+                            "path": "/5-3",
+                            "title": "运营数据统计",
+                            "linkUrl":"report_business.html",
+                            "children":[]
                         }
                     ]
                 }
@@ -192,8 +204,8 @@
         }
     });
     $(function() {
-            var wd = 200;
-            $(".el-main").css('width', $('body').width() - wd + 'px');
+        var wd = 200;
+        $(".el-main").css('width', $('body').width() - wd + 'px');
     });
 </script>
 </html>

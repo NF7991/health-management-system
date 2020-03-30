@@ -60,6 +60,11 @@ public class SetmealServiceImpl implements SetmealService {
         return setmealDao.findById(id);
     }
 
+    @Override
+    public List<Map<String, Object>> findSetmealCount() {
+        return setmealDao.findSetmealCount();
+    }
+
     public void setSetmealAndCheckGroup(Integer setmealId, Integer[] checkGroupIds) {
         if (checkGroupIds != null && checkGroupIds.length > 0) {
             for (Integer checkGroupId : checkGroupIds) {
