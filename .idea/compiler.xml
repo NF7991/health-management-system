@@ -16,7 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="health_backend" target="1.8" />
-      <module name="health_common" target="9" />
+      <module name="health_common" target="1.8" />
       <module name="health_interface" target="1.8" />
       <module name="health_jobs" target="1.8" />
       <module name="health_mobile" target="1.8" />
